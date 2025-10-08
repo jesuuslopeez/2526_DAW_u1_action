@@ -383,6 +383,7 @@ Este proyecto sirve para aprender a usar GitHub Actions �
 ### F - Accesibilidad y seguridad
 - Existe la posibilidad de convertir el repositorio en privado y dar permisos únicamente a las personas requeridas por seguridad.
 ### G - Instalación/uso documentados
+- https://github.com/jesuuslopeez/2526_DAW_u1_action/blob/88550d7e3bb37ad33db1c7e8f9606abc5232dd36/README.md?plain=1#L347-L352
 ### H - Integración continua
 El workflow implementado es un ejemplo de CI porque cada cambio en el repositorio se integra y verifica directamente con la documentación, garantizando que esta siempre esté actualizada.�
 
