@@ -1,4 +1,4 @@
-name: Documentación HTML/MD pdoc
+name: Documentación HTML pdoc
 on:
   push:
     branches: [ "main" ]
@@ -21,24 +21,16 @@ jobs:
           python-version: '3.11'
 
       - name: Instalar pdoc
-        run: pip install -U pdoc pydoc
+        run: pip install -U pdoc
 
       - name: Generar documentación HTML
         run: |
           mkdir -p docs/html
           pdoc main.py src/ -o docs/html
 
-      - name: Generar documentación Markdown con pydoc
-        run: |
-          mkdir -p docs/md
-          python -m pydoc main > docs/md/main.md
-          python -m pydoc src.test_runner > docs/md/test_runner.md
-          python -m pydoc src.generators > docs/md/generators.md
-          python -m pydoc src.utils > docs/md/utils.md
-
       - name: Commit y push automáticos
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Actualización"
-          file_pattern: "docs/html/* docs/md/*"
+          file_pattern: "docs/html/*"
           branch: main
