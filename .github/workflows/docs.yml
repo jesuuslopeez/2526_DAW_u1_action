@@ -27,7 +27,7 @@ jobs:
       - name: Generar HTML con pdoc
         run: |
           mkdir -p docs/html
-          pdoc --html main.py --output-dir docs/html --force
+          pdoc -o docs/ main.py src/
 
       - name: Commit y push automáticos
         uses: stefanzweifel/git-auto-commit-action@v5
