@@ -1,35 +1,35 @@
-name: Documentación PyDoc
+name: Docs automáticas con pydoc y commit
 
 on:
   push:
-    branches: [main]
+    branches: [ "main" ]
   workflow_dispatch:
 
+permissions:
+  contents: write 
+
 jobs:
-  build-docs:
+  generate-and-commit-docs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout al repo
-      uses: actions/checkout@v4
+      - name: Checkout al repositorio
+        uses: actions/checkout@v4
 
-    - name: Configuración de Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
+      - name: Configurar pyhon
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
-    - name: Instalar PyDoc
-      run: pip install pdoc
+      - name: Generar HTML con pydoc
+        run: |
+          mkdir -p docs/html
+          python -m pydoc -w main
+          mv main.html docs/html/
 
-    - name: Generar HTML
-      run: |
-        mkdir -p docs/html
-        python -m pydoc -w main
-        mv main.html docs/html/
-
-    - name: Subir artefactos
-      uses: actions/upload-artifact@v4
-      with:
-        name: documentación-html
-        path: docs/html/
-  
+      - name: Commit y push 
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Actualización docs HTML"
+          file_pattern: "docs/html/*"
+          branch: main
