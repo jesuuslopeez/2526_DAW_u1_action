@@ -21,7 +21,7 @@ jobs:
           python-version: '3.11'
 
       - name: Instalar pdoc
-        run: pip install -U pdoc
+        run: pip install -U pdoc pydoc
 
       - name: Generar documentación HTML
         run: |
