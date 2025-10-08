@@ -28,12 +28,15 @@ jobs:
           mkdir -p docs/html
           pdoc main.py src/ -o docs/html
 
-      - name: Generar documentación Markdown
+      - name: Generar documentación Markdown con pydoc
         run: |
           mkdir -p docs/md
-          pdoc -d markdown main.py src/ -o docs/md
+          python -m pydoc main > docs/md/main.md
+          python -m pydoc src.test_runner > docs/md/test_runner.md
+          python -m pydoc src.generators > docs/md/generators.md
+          python -m pydoc src.utils > docs/md/utils.md
 
-      - name: Commit y push 
+      - name: Commit y push automáticos
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Actualización"
