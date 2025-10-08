@@ -1,5 +1,4 @@
-name: Documentación Pdoc HTML/MD
-
+name: Documentación HTML/MD pdoc
 on:
   push:
     branches: [ "main" ]
@@ -13,30 +12,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout al repositorio
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Configurar python
+      - name: Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Instalar pdoc
-        run: pip install -U pdoc
+      - name: Instalar dependencias
+        run: |
+          pip install -U pdoc
+          pip install -U pdoc-markdown
 
-      - name: Generar documentación HTML
+      - name: Generar HTML
         run: |
           mkdir -p docs/html
           pdoc main.py src/ -o docs/html
 
-      - name: Generar documentación Markdown
+      - name: Generar MD
         run: |
           mkdir -p docs/md
-          pdoc -d markdown main.py src/ -o docs/md
+          pdoc-markdown main.py src/ -o docs/md
 
       - name: Commit y push automáticos
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Actualización archivos"
+          commit_message: "Actualizacion"
           file_pattern: "docs/html/* docs/md/*"
           branch: main
