@@ -1,4 +1,4 @@
-name: Docs automáticas con pydoc y commit
+name: Documentación con Pdoc 
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write 
+  contents: write
 
 jobs:
   generate-and-commit-docs:
@@ -16,20 +16,22 @@ jobs:
       - name: Checkout al repositorio
         uses: actions/checkout@v4
 
-      - name: Configurar pyhon
+      - name: Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Generar HTML con pydoc
+      - name: Instalar pdoc
+        run: pip install pdoc
+
+      - name: Generar HTML con pdoc
         run: |
           mkdir -p docs/html
-          python -m pydoc -w main
-          mv main.html docs/html/
+          pdoc --html main.py --output-dir docs/html --force
 
-      - name: Commit y push 
+      - name: Commit y push automáticos
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Actualización docs HTML"
+          commit_message: "Actualización docs HTML con pdoc"
           file_pattern: "docs/html/*"
           branch: main
