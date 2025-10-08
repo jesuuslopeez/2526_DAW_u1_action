@@ -20,24 +20,22 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Instalar dependencias
-        run: |
-          pip install -U pdoc
-          pip install -U pdoc-markdown
+      - name: Instalar pdoc
+        run: pip install -U pdoc
 
-      - name: Generar HTML
+      - name: Generar documentación HTML
         run: |
           mkdir -p docs/html
           pdoc main.py src/ -o docs/html
 
-      - name: Generar MD
+      - name: Generar documentación Markdown
         run: |
           mkdir -p docs/md
-          pdoc-markdown main.py src/ -o docs/md
+          pdoc -d markdown main.py src/ -o docs/md
 
-      - name: Commit y push automáticos
+      - name: Commit y push 
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Actualizacion"
+          commit_message: "Actualización"
           file_pattern: "docs/html/* docs/md/*"
           branch: main
