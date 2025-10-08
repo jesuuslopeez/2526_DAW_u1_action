@@ -338,3 +338,49 @@ Este proyecto sirve para aprender a usar GitHub Actions 🚀
 
 ## Estado de los tests
 ✅ Tests correctos
+
+## a) Herramientas usadas para generar documentación y comandos ejecutados.
+- Las herramientas utilizadas han sido PDOC y PYDOC, PDOC para la documentación en HTML y PYDOC para la documentación en MD
+
+## b) Ejemplos de código documentado
+https://github.com/jesuuslopeez/2526_DAW_u1_action/blob/23b74928173f46d86220d02d7470d6f3a7415f7a/main.py#L1-L36
+
+## c) Formatos generados
+
+## d) Explicación breve del workflow 
+- Checkout para descargar el código del repositorio
+- Configurar la versión 3.11 de python
+- Instalar pdoc y pydoc con pip
+- Generar documentaciones
+- Hacer commit y push
+
+## e) Mensajes de commit
+- Add GitHub Actions workflow to greet in Spanish
+- Delete .github/workflows/hello.yml
+- Create docs.yml
+- Cambio contenido main.py
+
+## f) Evidencia de configuración SSH para GitHub
+![Captura](assets/cap1.png)
+
+## g) Cómo clonar/usar el repositorio para reproducir la generación de documentación.
+- git clone git@github.com:jesuuslopeez/2526_DAW_u1_action.git
+- pip install pydoc pdoc
+- python -m venv .venv
+- source venv/bin/activate
+
+## Identificación de herramientas de generación de documentación.
+- Pydoc
+- Pdoc
+
+## Documentación de componentes.
+https://github.com/jesuuslopeez/2526_DAW_u1_action/blob/23b74928173f46d86220d02d7470d6f3a7415f7a/main.py#L1-L36
+
+## Multiformato
+El otro formato ha sido MarkDown
+    python -m pydoc main > docs/md/main.md
+    python -m pydoc src.test_runner > docs/md/test_runner.md
+    python -m pydoc src.generators > docs/md/generators.md
+    python -m pydoc src.utils > docs/md/utils.md
+
+Utilice MD porque es uno de los lenguajes de marcas más utilizados y de los mejores en cuanto lo visual.
