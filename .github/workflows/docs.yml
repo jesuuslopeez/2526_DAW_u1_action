@@ -32,7 +32,7 @@ jobs:
         sudo apt-get install -y texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
         python -m sphinx -b latex docs/source docs/build/latex
         cd docs/build/latex
-        pdflatex Mi_Proyecto.tex
+        pdflatex Proyecto_de_Jesus.tex
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
